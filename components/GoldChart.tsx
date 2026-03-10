@@ -6,7 +6,8 @@ export default function GoldChart() {
   const container = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!container.current) return;
+    const currentContainer = container.current;
+    if (!currentContainer) return;
 
     const script = document.createElement("script");
     script.src = "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
@@ -25,12 +26,12 @@ export default function GoldChart() {
       support_host: "https://www.tradingview.com",
     });
 
-    container.current.appendChild(script);
+    currentContainer.appendChild(script);
 
     // Cleanup khi component unmount
     return () => {
-      if (container.current) {
-        container.current.innerHTML = "";
+      if (currentContainer) {
+        currentContainer.innerHTML = "";
       }
     };
   }, []);

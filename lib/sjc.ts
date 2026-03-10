@@ -9,6 +9,20 @@ export type SJCResponse = {
   latestDate: string;
   items: SJCItem[];
 };
+type Row = {
+  Id: number;
+  TypeName: string;
+  BranchName: string;
+  Buy: string;
+  Sell: string;
+  BuyValue: number;
+  SellValue: number;
+  BuyDiffer: null | string | number;
+  BuyDifferValue: number;
+  SellDiffer: null;
+  SellDifferValue: number;
+  GroupDate: string;
+};
 
 export async function getSJCPrices(): Promise<SJCResponse> {
   const res = await fetch("https://sjc.com.vn/GoldPrice/Services/PriceService.ashx", {
@@ -20,14 +34,13 @@ export async function getSJCPrices(): Promise<SJCResponse> {
       method: "GetCurrentGoldPricesByBranch",
       BranchId: "1",
     }),
-    next: { revalidate: 60 }, // cache 1 minute
   });
 
   const json = await res.json();
 
   return {
     latestDate: json.latestDate,
-    items: json.data.map((i: any) => ({
+    items: json.data.map((i: Row) => ({
       id: i.Id,
       typeName: i.TypeName,
       buyValue: i.BuyValue,
