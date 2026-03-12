@@ -27,9 +27,9 @@ export async function GET() {
         {
           bid: i.bid,
           ask: i.ask,
-          gram: i.priceGram,
-          change: i.bidDiff,
-          changePercent: i.bidDiffPer,
+          priceGram: i.priceGram,
+          bidDiff: i.bidDiff,
+          askDiff: i.askDiff,
         },
       ])
     );
@@ -38,32 +38,32 @@ export async function GET() {
       gold24: {
         buy: json.officialPrice4.p_pure,
         sell: json.officialPrice4.s_pure,
-        change: json.officialPrice4.turm_p_pure,
-        changePercent: json.officialPrice4.per_p_pure,
+        buyDiff: json.officialPrice4.turm_p_pure,
+        sellDiff: json.officialPrice4.turm_s_pure,
       },
       gold18: {
         buy: json.officialPrice4.p_18k,
         sell: json.officialPrice4.s_18k,
-        change: json.officialPrice4.turm_p_18k,
-        changePercent: json.officialPrice4.per_p_18k,
+        buyDiff: json.officialPrice4.turm_p_18k,
+        sellDiff: json.officialPrice4.turm_s_18k,
       },
       gold14: {
         buy: json.officialPrice4.p_14k,
         sell: json.officialPrice4.s_14k,
-        change: json.officialPrice4.turm_p_14k,
-        changePercent: json.officialPrice4.per_p_14k,
+        buyDiff: json.officialPrice4.turm_p_14k,
+        sellDiff: json.officialPrice4.turm_s_14k,
       },
       silver: {
         buy: json.officialPrice4.p_silver,
         sell: json.officialPrice4.s_silver,
-        change: json.officialPrice4.turm_p_silver,
-        changePercent: json.officialPrice4.per_p_silver,
+        buyDiff: json.officialPrice4.turm_p_silver,
+        sellDiff: json.officialPrice4.turm_s_silver,
       },
       platinum: {
         buy: json.officialPrice4.p_white,
         sell: json.officialPrice4.s_white,
-        change: json.officialPrice4.turm_p_white,
-        changePercent: json.officialPrice4.per_p_white,
+        buyDiff: json.officialPrice4.turm_p_white,
+        sellDiff: json.officialPrice4.turm_s_white,
       },
     };
 
@@ -76,6 +76,9 @@ export async function GET() {
       {
         headers: {
           "Cache-Control": "public, s-maxage=60",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type",
         },
       }
     );
